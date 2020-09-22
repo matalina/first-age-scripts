@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\HoneyPot;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\IAmHuman;
 
@@ -30,16 +31,18 @@ class NewCharacterRequest extends FormRequest
             'username' => 'required|string',
             'age' => 'required|string',
             'origin' => 'required|string',
-            'job' => 'required|string,'
+            'job' => 'required|string',
             'personality' => 'required|string',
             'description' => 'required|string',
-            'history' => 'required|string',
+            'biography' => 'required|string',
             'powers' => 'required|string',
-            'channeler' => 'required|boolean',
-            'op_strength' => 'required_if:channeler,1|integer|min:1|max:42',
-            'experience' => 'required_if:channeler,1|in:new,adept,expert,master',
+            'i_can_channel' => 'required|boolean',
+            'current_strength' => 'required_if:i_can_channel,1|integer|min:1|max:42',
+            'potential_strength' => 'required_if:i_can_channel,1|integer|min:1|max:42',
+            'experience' => 'required_if:i_can_channel,1|in:new,adept,expert,master',
             'reborn_god' => 'nullable|string',
-            'series_author_name' => ['required', IAmHuman]
+            'series_author_name' => ['required', new IAmHuman],
+            'rate_us' => ['nullable', new HoneyPot],
         ];
     }
 }

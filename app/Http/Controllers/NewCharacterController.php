@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\NewCharacterRequest;
 use App\Mail\NewCharacterApplication;
 
 
@@ -13,14 +13,15 @@ class NewCharacterController extends Controller
         return view('character.application');
     }
     
-    public function store(\App\Http\Requests\NewCharacterRequest $request)
+    public function store(NewCharacterRequest $request)
     {
-        dd('here');
         \Mail::to([
                 'alicia@akddev.net',
                 'angelapierce2009@gmail.com',
                 'first.age.characters@gmail.com'
             ])
             ->send(new NewCharacterApplication($request));
+
+        return response()->json(['message' => 'Your application has been submitted. You will be contacted shortly with approval or any questions via PM on the forums at the username you provided.']);
     }
 }
