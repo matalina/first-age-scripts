@@ -16,9 +16,10 @@ class NewCharacterController extends Controller
     public function store(NewCharacterRequest $request)
     {
         \Mail::to([
-                'alicia@akddev.net',
-                'angelapierce2009@gmail.com',
-                'first.age.characters@gmail.com'
+                //'alicia@akddev.net',
+                //'angelapierce2009@gmail.com',
+                'first.age.characters@gmail.com',
+		'ascendancynikolai@gmail.com'
             ])
             ->send(new NewCharacterApplication($request));
 
