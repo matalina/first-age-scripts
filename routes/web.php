@@ -15,7 +15,7 @@ Route::get('/', function () {
     return '';
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('the-story/{dir}','StoryController@index')
     ->name('story.full');
@@ -33,6 +33,3 @@ Route::get('posts/{topic_id}','ApiController@posts'); // returns all posts for a
 
 Route::get('application','NewCharacterController@create')->name('application.create');
 Route::post('application','NewCharacterController@store')->name('application.store');
-
-
-
