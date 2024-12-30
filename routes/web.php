@@ -14,6 +14,7 @@
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\NewCharacterController;
 use App\Http\Controllers\StoryController;
+use Illuminate\Routing\Route;
 
 Route::get('/', function () {
     return '';
