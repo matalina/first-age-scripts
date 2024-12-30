@@ -5,13 +5,12 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Http\Requests\NewCharacterRequest;
 
 class NewCharacterApplication extends Mailable
 {
     use Queueable, SerializesModels;
-    
+
     protected $request;
 
     /**
