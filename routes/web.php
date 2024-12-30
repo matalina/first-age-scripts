@@ -10,15 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\NewCharacterController;
 use App\Http\Controllers\StoryController;
+use Illuminate\Support\Facades\Route;
 
-Route::controller(StoryController::class)->group(function () {
-    Route::get('the-story/{dir}', 'index')->name('story.full');
-    Route::get('the-story/{user}/{dir}',' show')->name('story.character');
+Route::get('/', function () {
+    return '';
 });
+
+//Auth::routes();
+
+Route::get('the-story/{dir}', [StoryController::class, 'index'])
+    ->name('story.full');
+
+Route::get('the-story/{user}/{dir}', [StoryController::class, 'show'])
+    ->name('story.character');
 
 /* Vue SPA Characters */
 
