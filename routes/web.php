@@ -11,25 +11,29 @@
 |
 */
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\NewCharacterController;
+use App\Http\Controllers\StoryController;
+
 Route::get('/', function () {
     return '';
 });
 
 //Auth::routes();
 
-Route::get('the-story/{dir}','StoryController@index')
+Route::get('the-story/{dir}', [StoryController::class, 'index'])
     ->name('story.full');
 
-Route::get('the-story/{user}/{dir}', 'StoryController@show')
+Route::get('the-story/{user}/{dir}', [StoryController::class, 'show'])
     ->name('story.character');
 
 /* Vue SPA Characters */
 
-Route::get('characters/', 'ApiController@index'); // returns a list of users with bios on the board
-Route::get('character/{user_id}/story', 'ApiController@story'); // returns a characters story topic ids
-Route::get('posts/{topic_id}','ApiController@posts'); // returns all posts for a topic id
+Route::get('characters/', [ApiController::class, 'index']); // returns a list of users with bios on the board
+Route::get('character/{user_id}/story', [ApiController::class, 'story']); // returns a characters story topic ids
+Route::get('posts/{topic_id}',[ApiController::class, 'posts']); // returns all posts for a topic id
 
 /* New Character */
 
-Route::get('application','NewCharacterController@create')->name('application.create');
-Route::post('application','NewCharacterController@store')->name('application.store');
+Route::get('application',[NewCharacterController::class, 'create'])->name('application.create');
+Route::post('application',[NewCharacterController::class, 'store'])->name('application.store');
