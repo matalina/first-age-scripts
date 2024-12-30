@@ -14,19 +14,11 @@
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\NewCharacterController;
 use App\Http\Controllers\StoryController;
-use Illuminate\Routing\Route;
 
-Route::get('/', function () {
-    return '';
+Route::controller(StoryController::class)->group(function () {
+    Route::get('the-story/{dir}', 'index')->name('story.full');
+    Route::get('the-story/{user}/{dir}',' show')->name('story.character');
 });
-
-//Auth::routes();
-
-Route::get('the-story/{dir}', [StoryController::class, 'index'])
-    ->name('story.full');
-
-Route::get('the-story/{user}/{dir}', [StoryController::class, 'show'])
-    ->name('story.character');
 
 /* Vue SPA Characters */
 
